@@ -7,6 +7,34 @@
   "source": "https://github.com/GiooDev/puppetm-subsonic",
   "issues_url": "https://github.com/GiooDev/puppetm-subsonic/issues",
   "project_page": "https://github.com/GiooDev/puppetm-subsonic",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14.04"
+      ]
+    }
+  ],
   "dependencies": [
     {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
   ]

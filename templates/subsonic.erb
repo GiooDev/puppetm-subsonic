@@ -1,0 +1,33 @@
+# MANAGED BY PUPPET!
+#
+# This is the configuration file for the Subsonic service
+# (/etc/init.d/subsonic)
+#
+# To change the startup parameters of Subsonic, modify
+# the SUBSONIC_ARGS variable below.
+#
+# Type "subsonic --help" on the command line to read an
+# explanation of the different options.
+#
+# For example, to specify that Subsonic should use port 80 (for http)
+# and 443 (for https), and use a Java memory heap size of 200 MB, use
+# the following:
+#
+# SUBSONIC_ARGS="--port=80 --https-port=443 --max-memory=200"
+
+# SUBSONIC_ARGS="--max-memory=150"
+SUBSONIC_ARGS="<% if scope.lookupvar('subsonic::home') != 'undef' -%>--home=<%= scope.lookupvar('subsonic::home') %> <% end -%>
+<% if scope.lookupvar('subsonic::host') != 'undef' -%>--host=<%= scope.lookupvar('subsonic::host') %> <% end -%>
+<% if scope.lookupvar('subsonic::http_port') != 'undef' -%>--port=<%= scope.lookupvar('subsonic::http_port') %> <% end -%>
+<% if scope.lookupvar('subsonic::https_port') != 'undef' -%>--https-port=<%= scope.lookupvar('subsonic::https_port') %> <% end -%>
+<% if scope.lookupvar('subsonic::context_path') != 'undef' -%>--context-path=<%= scope.lookupvar('subsonic::context_path') %> <% end -%>
+<% if scope.lookupvar('subsonic::max_memory') != 'undef' -%>--max-memory=<%= scope.lookupvar('subsonic::max_memory') %> <% end -%>
+<% if scope.lookupvar('subsonic::pidfile') != 'undef' -%>--pidfile=<%= scope.lookupvar('subsonic::pidfile') %><% end -%>"
+
+
+# The user which should run the Subsonic process. Default "root".
+# Note that non-root users are by default not allowed to use ports
+# below 1024. Also make sure to grant the user write permissions in
+# the music directories, otherwise changing album art and tags will fail.
+
+SUBSONIC_USER="<%= scope.lookupvar('subsonic::user') %>"

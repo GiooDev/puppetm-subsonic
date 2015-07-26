@@ -1,41 +1,69 @@
 # == Class: subsonic
 #
-# Full description of class subsonic here.
+# Puppet module to install and configure Subsonic.
 #
 # === Parameters
 #
-# Document parameters here.
+# See `subsonic --help` for more informations about default parameters
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*home*]
+#   The directory where Subsonic will create files. Default: /var/subsonic
 #
-# === Variables
+# [*host*]
+#   The host name or IP address on which to bind Subsonic. 
+#   Default: 0.0.0.0
 #
-# Here you should define a list of variables that this module would require.
+# [*http_port*]
+#   The port on which Subsonic will listen for incoming HTTP traffic. Default: 4040
 #
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
+# [*https_port*]
+#   The port on which Subsonic will listen for incoming HTTPS traffic. Default: 0 (disabled)
+#
+# [*context_path*]
+#   The last part of the Subsonic URL. Default: /
+#
+# [*max_memory*]
+#   The memory limit (max Java heap size) in megabytes. Default: 150
+#
+# [*pidfile*]
+#   Write PID to this file. Default: not created.
+#
+# [*user*]
+#   The user to run Subsonic. Default: root
 #
 # === Examples
 #
 #  class { 'subsonic':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
+#    http_port  => '2020',
+#    max_memory => '256',
 #  }
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Julien Georges <GiooDev@users.noreply.github.com>
 #
 # === Copyright
 #
-# Copyright 2015 Your name here, unless otherwise noted.
+# Copyright 2015 Julien Georges
 #
-class subsonic {
+class subsonic (
+    $home         = 'undef',
+    $host         = 'undef',
+    $http_port    = 'undef',
+    $https_port   = 'undef',
+    $context_path = 'undef',
+    $max_memory   = '150',
+    $pidfile      = 'undef',
 
+    $user         = 'root',
+)  inherits subsonic::params {
+
+    include subsonic::install
+    include subsonic::config
+    include subsonic::service
+    
+    Class['subsonic::install'] ->
+    Class['subsonic::config'] ->
+    Class['subsonic::service']
 
 }
