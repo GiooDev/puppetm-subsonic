@@ -1,0 +1,14 @@
+{
+  "name": "puppetm-subsonic",
+  "version": "0.1.0",
+  "author": "Julien Georges",
+  "summary": "Puppet module to install and configure Subsonic.",
+  "license": "Apache 2.0",
+  "source": "https://github.com/GiooDev/puppetm-subsonic",
+  "issues_url": "https://github.com/GiooDev/puppetm-subsonic/issues",
+  "project_page": "https://github.com/GiooDev/puppetm-subsonic",
+  "dependencies": [
+    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
+  ]
+}
+
