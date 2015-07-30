@@ -1,5 +1,5 @@
 {
-  "name": "puppetm-subsonic",
+  "name": "GiooDev-subsonic",
   "version": "0.1.0",
   "author": "Julien Georges",
   "summary": "Puppet module to install and configure Subsonic.",
